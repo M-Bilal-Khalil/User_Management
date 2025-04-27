@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="form-container">
+          <h1 class="mb-4 text-center">Sign In</h1>
+          <form onsubmit="loginUser(event)">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email" required />
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password" required />
+            </div>
+            <div class="text-center ">
+                <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            <div class="text-center mt-3">
+              <p>Don't have an account? <a href="registration.html" class="text-primary">Register here</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
