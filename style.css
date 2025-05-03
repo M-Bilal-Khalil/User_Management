@@ -32,10 +32,27 @@ h1 {
 
 /* Home Page */
 
-.body {
+#body-index {
     background-color: #f8f9fa;
 }
 
 .welcome-message {
   margin-top: 20px;
+}
+
+.welcome-section {
+  margin-top: 50px;
+}
+.todo-container {
+  margin-top: 30px;
+}
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
 }

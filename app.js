@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     updateHomePageUI();
   }
-  
 
 });
 
@@ -126,4 +125,62 @@ function logoutUser() {
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // regexr for regular expressions/ or 101 regex.com
   return emailRegex.test(email);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // if (!currentUser) {
+  //   window.location.href = "./login.html";
+  //   return;
+  // }
+
+  // Display the current user's name and email
+  document.getElementById("userName").textContent = currentUser.fullName;
+  document.getElementById("userEmail").textContent = currentUser.email;
+
+  // Initialize the To-Do List for the current user
+  const todoList = JSON.parse(localStorage.getItem("todoList")) || {};
+  if (!todoList[currentUser.email]) {
+    todoList[currentUser.email] = [];
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }
+
+  // Render the To-Do List
+  renderTodoList(todoList[currentUser.email]);
+
+  // Add event listener for the To-Do form
+  document.getElementById("todoForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const todoInput = document.getElementById("todoInput");
+    const newTask = todoInput.value.trim();
+    if (newTask === "") return;
+
+    // Add the new task to the user's To-Do List
+    todoList[currentUser.email].push({ task: newTask, completed: false });
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+
+    // Clear the input field and re-render the list
+    todoInput.value = "";
+    renderTodoList(todoList[currentUser.email]);
+  });
+});
+
+// Function to render the To-Do List
+function renderTodoList(tasks) {
+  const todoListContainer = document.getElementById("todoList");
+  todoListContainer.innerHTML = "";
+
+  tasks.forEach((task) => {
+    const todoItem = document.createElement("div");
+    todoItem.className = "todo-item";
+
+    const taskText = document.createElement("span");
+    taskText.textContent = task.task;
+    if (task.completed) {
+      taskText.style.textDecoration = "line-through";
+    }
+
+    todoItem.appendChild(taskText);
+    todoListContainer.appendChild(todoItem);
+  });
 }
